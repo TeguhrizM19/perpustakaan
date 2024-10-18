@@ -4,5 +4,5 @@
 @endsection
 
 @section('content')
-  Selamat Datang
+  <h1>Selamat Datang di Web</h1>
 @endsection
