@@ -4,7 +4,9 @@
 @endsection
 
 @section('content')
+@auth
 <a href="/books/create" class="btn btn-info"><i class="fas fa-solid fa-plus"></i>  Tambah</a>
+@endauth
 
 <table class="table">
   <thead>
@@ -32,10 +34,12 @@
         <td>
           <form action="/books/{{ $book->id }}" method="POST">
           <a href="/books/{{ $book->id }}" class="btn btn-success"><i class="fas fa-solid fa-eye"></i></a>
-          <a href="/books/{{ $book->id }}/edit" class="btn btn-warning"><i class="fas fa-solid fa-pen-nib"></i></a>
-            @method("DELETE")
-            @csrf
+          @auth
+            <a href="/books/{{ $book->id }}/edit" class="btn btn-warning"><i class="fas fa-solid fa-pen-nib"></i></a>
+          @method("DELETE")
+          @csrf
             <button type="submit" class="btn btn-danger"><i class="fas fa-solid fa-ban"></i></button>
+          @endauth
           </form>
         </td>
       </tr>

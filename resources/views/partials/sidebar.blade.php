@@ -5,7 +5,12 @@
       <img src="{{ asset('templating/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
     </div>
     <div class="info">
-      <a href="#" class="d-block">Alexander Pierce</a>
+      @auth
+        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+      @endauth
+      @guest
+        <a href="#" class="d-block">Alexander Pierce</a>
+      @endguest
     </div>
   </div>
 

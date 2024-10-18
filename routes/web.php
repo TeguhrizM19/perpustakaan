@@ -20,11 +20,14 @@ Route::get('/', function () {
   return view('index');
 });
 
+// Route::middleware(['auth'])->group(function () {
+// });
+
 // CRUD category
 Route::resource('/category', CategoryController::class);
+
 // CRUD book
 Route::resource('/books', BooksController::class);
 
 Auth::routes();
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
