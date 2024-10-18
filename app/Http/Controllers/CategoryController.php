@@ -49,7 +49,7 @@ class CategoryController extends Controller
    */
   public function show(String $id)
   {
-    $category = Category::find($id);
+    $category = Category::with('books')->find($id);
     return view('category.detail', compact('category'));;
   }
 

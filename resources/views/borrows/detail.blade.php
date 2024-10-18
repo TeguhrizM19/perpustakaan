@@ -7,9 +7,9 @@
 <a href="/category" class="btn btn-primary">Kembali</a>
 <h1>{{ $category->name }}</h1>
 @forelse ($category->books as $book)
-  <ul>
-    <li>{{ $book->title }}</li>
-  </ul>
+<ul>
+  <li>{{ $book->title }}</li>
+</ul>
 @empty
   <ul>
     <li>Data tidak ditemukan</li>

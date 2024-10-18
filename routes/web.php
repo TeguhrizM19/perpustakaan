@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 
@@ -32,4 +33,8 @@ Route::resource('/books', BooksController::class);
 
 Auth::routes();
 
+// CRUD Peminjaman
+Route::resource('/borrows', BorrowController::class);
+
+// Halaman User
 Route::get('/users', [UserController::class, 'index']);
