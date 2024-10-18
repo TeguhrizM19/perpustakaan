@@ -19,6 +19,7 @@ Route::get('/', function () {
   return view('index');
 });
 
+// CRUD category
 Route::resource('/category', CategoryController::class);
-
+// CRUD book
 Route::resource('/books', BooksController::class);
