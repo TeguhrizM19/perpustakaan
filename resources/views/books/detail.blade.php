@@ -3,16 +3,31 @@
   Detail Buku
 @endsection
 
+@push('scripts')
+<script src="{{ asset('templating/plugins/datatables/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('templating/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable('');
+  });
+</script>
+@endpush
+@push('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+@endpush
+
 @section('content')
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title font-weight-bold">Judul : {{ $book->title }}</h4><br>
-        <ul>
-          <li>Ringkasan : {{ $book->summary }}</li>
-          <li>Tahun Rilis : {{ $book->releas_year }}</li>
-          <li>Kategori : {{ $book->category->name }}</li>
+        <div class="card-header">
+          <h5 class="font-weight-bold">Judul : {{ $book->title }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Ringkasan : {{ $book->summary }}</li>
+          <li class="list-group-item">Tahun Rilis : {{ $book->releas_year }}</li>
+          <li class="list-group-item">Kategori : {{ $book->category->name }}</li>
         </ul>
       </div>
     </div>
@@ -30,7 +45,8 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <table class="table">
+        <h5 class="font-weight-bold mb-3 text-center">Daftar Peminjaman</h5>
+        <table class="table" id="example1">
           <thead>
             <tr>
               <th>#</th>

@@ -24,14 +24,6 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
       {{-- Input form --}}
       @csrf
       <div class="form-group">
-        <label>Tanggal Pinjam</label>
-        <input type="text" class="form-control" name="tgl_peminjaman" value="{{ $pinjam }}" readonly>
-      </div>
-      <div class="form-group">
-        <label>Tanggal Kembali</label>
-        <input type="text" class="form-control" name="tgl_kembali" value="{{ $kembali }}" readonly>
-      </div>
-      <div class="form-group">
         <label>Peminjam</label>
         <select name="user_id" class="form-control">
           <option value="">Pilih Peminjam</option>
@@ -52,6 +44,14 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
             Data masih kosong
           @endforelse
         </select>
+      </div>
+      <div class="form-group">
+        <label>Tanggal Pinjam</label>
+        <input type="text" class="form-control" name="tgl_peminjaman" value="{{ $pinjam }}" readonly>
+      </div>
+      <div class="form-group">
+        <label>Tanggal Kembali</label>
+        <input type="text" class="form-control" name="tgl_kembali" value="{{ $kembali }}" readonly>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

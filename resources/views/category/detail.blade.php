@@ -4,8 +4,8 @@
 @endsection
 
 @section('content')
-<h1>Halaman Category : {{ $category->name }}</h1>
-<a href="/category" class="btn btn-primary mb-3">Kembali</a>
+<h3 class="text-center">Daftar Buku Category : {{ $category->name }}</h3>
+<a href="/category" class="btn btn-primary my-3">Kembali</a>
 
 <table class="table">
   <thead>
