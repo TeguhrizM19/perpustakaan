@@ -23,6 +23,6 @@ class Borrow extends Model
   public function book()
   {
     // Relasi Many to One, Banyak peminjaman bisa meminjam satu buku
-    return $this->belongsTo(Book::class);
+    return $this->belongsTo(Book::class, 'book_id');
   }
 }

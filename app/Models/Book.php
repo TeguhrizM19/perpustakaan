@@ -20,9 +20,9 @@ class Book extends Model
     return $this->belongsTo(Category::class);
   }
 
-  public function borrow()
+  public function borrows()
   {
     // Relasi One to Many, Satu buku bisa dipinjam di banyak transaksi peminjaman
-    return $this->hasMany(Borrow::class);
+    return $this->hasMany(Borrow::class, 'book_id');
   }
 }

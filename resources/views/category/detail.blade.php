@@ -4,16 +4,40 @@
 @endsection
 
 @section('content')
-<a href="/category" class="btn btn-primary">Kembali</a>
-<h1>{{ $category->name }}</h1>
-@forelse ($category->books as $book)
-  <ul>
-    <li>{{ $book->title }}</li>
-  </ul>
-@empty
-  <ul>
-    <li>Data tidak ditemukan</li>
-  </ul>
-@endforelse
+<h1>Halaman Category : {{ $category->name }}</h1>
+<a href="/category" class="btn btn-primary mb-3">Kembali</a>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Tahun Rilis</th>
+      <th scope="col">Kategori</th>
+      <th scope="col">Gambar</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @forelse ($category->books as $book)
+      <tr>
+        <th scope="row">{{ $loop->iteration }}</th>
+        <td>{{ $book->title }}</td>
+        <td>{{ $book->releas_year }}</td>
+        <td>{{ $book->category->name }}</td>
+        <td>
+          <img src="{{ asset('uploads/' . $book->image) }}" width="80px" alt="">
+        </td>
+        <td>
+          <a href="/books/{{ $book->id }}" class="btn btn-success"><i class="fas fa-solid fa-eye"></i></a>
+        </td>
+      </tr>
+    @empty
+      <tr>
+        <td>Data Masih Kosong</td>
+      </tr>
+    @endforelse
+    
+  </tbody>
+</table>
 @endsection

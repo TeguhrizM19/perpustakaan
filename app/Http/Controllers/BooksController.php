@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Borrow;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -68,7 +70,7 @@ class BooksController extends Controller
    */
   public function show(string $id)
   {
-    $book = Book::find($id);
+    $book = Book::with('borrows.user')->find($id);
     return view('books.detail', compact('book'));
   }
 
