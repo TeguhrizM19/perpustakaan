@@ -22,9 +22,6 @@ Route::get('/', function () {
   return view('index');
 });
 
-// Route::middleware(['auth'])->group(function () {
-// });
-
 // CRUD category
 Route::resource('/category', CategoryController::class);
 
@@ -33,8 +30,12 @@ Route::resource('/books', BooksController::class);
 
 Auth::routes();
 
-// CRUD Peminjaman
-Route::resource('/borrows', BorrowController::class);
+Route::middleware(['auth'])->group(function () {
+  Route::post('/borrow/{book_id}', [BorrowController::class, 'store']);
+});
 
 // Halaman User
 Route::get('/users', [UserController::class, 'index']);
+
+// // CRUD Peminjaman
+// Route::resource('/borrows', BorrowController::class);

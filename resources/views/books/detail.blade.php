@@ -12,6 +12,7 @@
   });
 </script>
 @endpush
+
 @push('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
 @endpush
@@ -36,6 +37,34 @@
     <div class="card">
       <div class="card-body">
         <img src="{{ asset('uploads/' . $book->image) }}" width="200px" alt="" class="my-3">
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php 
+$pinjam = date('d-M-Y');
+$kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
+?>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="font-weight-bold mb-3 text-center">Pinjam Buku</h5>
+        @auth
+        <form action="/borrow/{{ $book->id }}" method="POST">
+          @csrf
+          <div class="form-group">
+            <label>Tanggal Pinjam</label>
+            <input type="text" class="form-control" name="tgl_peminjaman" value="{{ $pinjam }}" readonly>
+          </div>
+          <div class="form-group">
+            <label>Tanggal Kembali</label>
+            <input type="text" class="form-control" name="tgl_kembali" value="{{ $kembali }}" readonly>
+          </div>
+          <input type="submit" value="Pinjam" class="btn btn-primary">
+        </form>
+        @endauth
       </div>
     </div>
   </div>

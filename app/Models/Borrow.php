@@ -17,7 +17,7 @@ class Borrow extends Model
   public function user()
   {
     // Relasi Many to One, Banyak peminjaman bisa dilakukan satu user
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class, 'user_id');
   }
 
   public function book()

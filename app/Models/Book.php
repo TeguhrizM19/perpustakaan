@@ -17,7 +17,7 @@ class Book extends Model
   public function category()
   {
     // Relasi Many to One, setiap buku memiliki satu category
-    return $this->belongsTo(Category::class);
+    return $this->belongsTo(Category::class, 'category_id');
   }
 
   public function borrows()
