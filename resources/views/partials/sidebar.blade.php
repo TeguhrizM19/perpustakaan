@@ -39,21 +39,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/books" class="nav-link {{ Request::is('books*') ? 'active' : '' }}">
-          <i class="nav-icon fas fa-solid fa-book"></i>
-          <p>Buku</p>
-        </a>
-      </li>
-      <li class="nav-item">
         <a href="/category" class="nav-link {{ Request::is('category*') ? 'active' : '' }}">
           <i class="nav-icon fas fa-solid fa-list"></i>
           <p>Category</p>
         </a>
       </li>
       <li class="nav-item">
-        <a href="/borrows" class="nav-link {{ Request::is('borrows*') ? 'active' : '' }}">
-          <i class="nav-icon fas fa-regular fa-id-card"></i>
-          <p>Peminjaman</p>
+        <a href="/books" class="nav-link {{ Request::is('books*') ? 'active' : '' }}">
+          <i class="nav-icon fas fa-solid fa-book"></i>
+          <p>Buku</p>
         </a>
       </li>
       <li class="nav-item">

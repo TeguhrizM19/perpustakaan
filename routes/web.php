@@ -36,6 +36,3 @@ Route::middleware(['auth'])->group(function () {
 
 // Halaman User
 Route::get('/users', [UserController::class, 'index']);
-
-// // CRUD Peminjaman
-// Route::resource('/borrows', BorrowController::class);
