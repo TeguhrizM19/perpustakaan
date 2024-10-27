@@ -13,7 +13,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
-      <th scope="col">Summary</th>
       <th scope="col">Tahun Rilis</th>
       <th scope="col">Kategori</th>
       <th scope="col">Gambar</th>
@@ -25,7 +24,6 @@
       <tr>
         <th scope="row">{{ $loop->iteration }}</th>
         <td>{{ $book->title }}</td>
-        <td>{{ $book->summary }}</td>
         <td>{{ $book->releas_year }}</td>
         <td>{{ $book->category->name }}</td>
         <td>
