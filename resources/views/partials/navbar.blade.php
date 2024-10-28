@@ -12,7 +12,7 @@
     <div class="nav-item">
       <a class="nav-link btn btn-danger text-white" href="{{ route('logout') }}"
         onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();"><i class="fas fa-solid fa-door-open"></i> 
+        document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket"></i>
           {{ __('Logout') }}
       </a>
 
@@ -27,7 +27,7 @@
   <div class="navbar-nav ml-auto">
     <div class="nav-item">
       <a href="/login" class="nav-link btn btn-primary text-white">
-        <i class="fas fa-solid fa-door-open"></i> 
+        <i class="fa-solid fa-right-to-bracket"></i>
         Login
       </a>
     </div>

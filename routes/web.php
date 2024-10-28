@@ -36,6 +36,7 @@ Auth::routes();
 
 // CRUD Peminjaman
 Route::resource('/borrows', BorrowController::class);
+Route::put('/borrows/{id}/selesai', [BorrowController::class, 'selesai']);
 
 // CRUD Member
 Route::resource('/members', MemberController::class);

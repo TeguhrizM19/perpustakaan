@@ -15,12 +15,12 @@ return new class extends Migration
       $table->id();
       $table->string('tgl_peminjaman');
       $table->string('tgl_kembali');
-      $table->unsignedBigInteger('user_id');
-      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->unsignedBigInteger('book_id');
-      $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
       $table->unsignedBigInteger('member_id');
       $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+      $table->unsignedBigInteger('book_id');
+      $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+      $table->integer('terlambat')->nullable()->default(0);
+      $table->string('status')->default('Pinjam');
       $table->timestamps();
     });
   }

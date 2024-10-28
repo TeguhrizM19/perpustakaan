@@ -17,6 +17,7 @@ return new class extends Migration
       $table->string('alamat');
       $table->string('no_telpon');
       $table->string('email');
+      $table->string('image');
       $table->timestamps();
     });
   }

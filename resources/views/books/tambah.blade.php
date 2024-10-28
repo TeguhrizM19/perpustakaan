@@ -43,6 +43,10 @@
         </select>
       </div>
       <div class="form-group">
+        <label>Stock</label>
+        <input type="number" class="form-control" name="stock">
+      </div>
+      <div class="form-group">
         <label>Image</label>
         <input type="file" class="form-control" name="image">
       </div>

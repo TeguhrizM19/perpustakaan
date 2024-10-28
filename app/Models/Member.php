@@ -13,6 +13,6 @@ class Member extends Model
 
     public function book()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class, 'book_id');
     }
 }

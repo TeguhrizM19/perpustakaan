@@ -11,6 +11,13 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
 <div class="row">
   <div class="col-md-8">
     <form action="/borrows" method="POST">
+      {{-- Validasi jika stock buku habis --}}
+    @if(session()->has('pesan'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ session('pesan') }}
+    </div>
+    @endif
+
       {{-- Validation jika tdk diinputkan --}}
       @if ($errors->any())
         <div class="alert alert-danger">
@@ -21,6 +28,7 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
             </ul>
         </div>
       @endif
+      
       {{-- Input form --}}
       @csrf
       <div class="form-group">
@@ -33,10 +41,10 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
       </div>
       <div class="form-group">
         <label>Peminjam</label>
-        <select name="user_id" class="form-control">
+        <select name="member_id" class="form-control">
           <option value="">Pilih Peminjam</option>
-          @forelse ($users as $user)
-            <option value="{{ $user->id }}">{{ $user->name }}</option>
+          @forelse ($members as $member)
+            <option value="{{ $member->id }}">{{ $member->nama }}</option>
           @empty
             Data masih kosong
           @endforelse

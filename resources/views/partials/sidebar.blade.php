@@ -32,16 +32,10 @@
       <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
       <li class="nav-item">
         <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="nav-icon fa-solid fa-chart-line"></i>
           <p>
             Dashboard
           </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="/books" class="nav-link {{ Request::is('books*') ? 'active' : '' }}">
-          <i class="nav-icon fas fa-solid fa-book"></i>
-          <p>Buku</p>
         </a>
       </li>
       <li class="nav-item">
@@ -51,15 +45,21 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/borrows" class="nav-link {{ Request::is('borrows*') ? 'active' : '' }}">
-          <i class="nav-icon fas fa-regular fa-id-card"></i>
-          <p>Peminjaman</p>
+        <a href="/books" class="nav-link {{ Request::is('books*') ? 'active' : '' }}">
+          <i class="nav-icon fas fa-solid fa-book"></i>
+          <p>Buku</p>
         </a>
       </li>
       <li class="nav-item">
         <a href="/members" class="nav-link {{ Request::is('members*') ? 'active' : '' }}">
           <i class="nav-icon fas fa-solid fa-users"></i>
           <p>Anggota</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/borrows" class="nav-link {{ Request::is('borrows*') ? 'active' : '' }}">
+          <i class="nav-icon fas fa-regular fa-id-card"></i>
+          <p>Peminjaman</p>
         </a>
       </li>
       <li class="nav-item">

@@ -1,19 +1,19 @@
 @extends('layouts.master')
 @section('title')
-  Detail Kategori
+  Detail Anggota
 @endsection
 
 @section('content')
-<a href="/category" class="btn btn-primary">Kembali</a>
-<h1>{{ $category->name }}</h1>
-@forelse ($category->books as $book)
+<h4>Bio Data Anggota : {{ $member->nama }}</h4>
 <ul>
-  <li>{{ $book->title }}</li>
+  <li>Nama : {{ $member->nama }}</li>
+  <li>Alamat : {{ $member->alamat }}</li>
+  <li>No Telpon : {{ $member->no_telpon }}</li>
+  <li>Email : {{ $member->email }}</li>
+  <li>
+    <img src="{{ asset('foto/' . $member->image) }}" width="200px" alt="">
+  </li>
 </ul>
-@empty
-  <ul>
-    <li>Data tidak ditemukan</li>
-  </ul>
-@endforelse
+<a href="/members" class="btn btn-warning mt-3">Kembali</a>
 
 @endsection

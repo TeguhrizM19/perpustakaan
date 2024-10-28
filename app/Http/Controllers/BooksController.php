@@ -43,6 +43,7 @@ class BooksController extends Controller
       'summary' => 'required',
       'releas_year' => 'required',
       'category_id' => 'exists:categories,id',
+      'stock' => 'required',
       'image' => 'required|mimes:jpg,jpeg,png|max:2048'
     ]);
     // mengubah naman file jadi unique
@@ -56,6 +57,7 @@ class BooksController extends Controller
     $books->summary = $request->input('summary');
     $books->releas_year = $request->input('releas_year');
     $books->category_id = $request->input('category_id');
+    $books->stock = $request->input('stock');
     $books->image = $newNameImage;
 
     $books->save();

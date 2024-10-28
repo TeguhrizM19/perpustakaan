@@ -6,7 +6,7 @@
 @section('content')
 <div class="row">
   <div class="col-md-8">
-    <form action="/members" method="POST">
+    <form action="/members" method="POST" enctype="multipart/form-data">
       {{-- Validation jika tdk diinputkan --}}
       @if ($errors->any())
         <div class="alert alert-danger">
@@ -34,6 +34,10 @@
       <div class="form-group">
         <label>Email</label>
         <input type="email" class="form-control" name="email">
+      </div>
+      <div class="form-group">
+        <label>Foto</label>
+        <input type="file" class="form-control" name="foto">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

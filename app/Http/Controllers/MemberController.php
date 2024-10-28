@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MemberController extends Controller
 {
@@ -34,14 +35,21 @@ class MemberController extends Controller
       'nama' => 'required|min:2',
       'alamat' => 'required|min:2',
       'no_telpon' => 'required|min:2',
-      'email' => 'required|email:dns'
+      'email' => 'required|email:dns',
+      'foto' => 'required|mimes:jpg,jpeg,png|max:2048'
     ]);
+
+    // <!-- mengubah naman file jadi unique -->
+    $newNameImage = time() . '.' . $request->foto->extension();
+    // <!-- tempat penyimpanan image -->
+    $request->foto->move(public_path('foto'), $newNameImage);
 
     $member = new Member;
     $member->nama = $request->input('nama');
     $member->alamat = $request->input('alamat');
     $member->no_telpon = $request->input('no_telpon');
     $member->email = $request->input('email');
+    $member->image = $newNameImage;
 
     $member->save();
     return redirect('/members');
@@ -50,9 +58,11 @@ class MemberController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Member $member)
+  public function show($id)
   {
-    //
+    return view('members.detail', [
+      'member' => Member::find($id)
+    ]);
   }
 
   /**
@@ -74,10 +84,21 @@ class MemberController extends Controller
       'nama' => 'required|min:2',
       'alamat' => 'required|min:2',
       'no_telpon' => 'required|min:2',
-      'email' => 'required|email:dns'
+      'email' => 'required|email:dns',
+      'foto' => 'mimes:jpg,jpeg,png|max:2048'
     ]);
 
     $member = Member::find($id);
+
+    if ($request->has('foto')) {
+      // Hapus file lama
+      File::delete('foto/' . $member->image);
+      // mengubah nama file jadi unique
+      $newNameImage = time() . '.' . $request->foto->extension();
+      // tempat penyimpanan image
+      $request->foto->move(public_path('foto'), $newNameImage);
+      $member->image = $newNameImage;
+    }
 
     $member->nama = $request->input('nama');
     $member->alamat = $request->input('alamat');
@@ -91,8 +112,15 @@ class MemberController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Member $member)
+  public function destroy($id)
   {
-    //
+    $member = Member::find($id);
+    // jika ada foto hapus
+    if ($member->image) {
+      File::delete('foto/' . $member->image);
+    }
+
+    $member->delete();
+    return back();
   }
 }
