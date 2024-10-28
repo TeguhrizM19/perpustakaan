@@ -3,6 +3,12 @@
   Tambah kategori
 @endsection
 
+{{-- Push CSS Select2 ke stack 'styles' --}}
+@push('styles')
+  <link href="{{ asset('templating/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('templating/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+@endpush
+
 @section('content')
 <?php 
 $pinjam = date('d-M-Y');
@@ -41,7 +47,7 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
       </div>
       <div class="form-group">
         <label>Peminjam</label>
-        <select name="member_id" class="form-control">
+        <select name="member_id" class="form-control opsi">
           <option value="">Pilih Peminjam</option>
           @forelse ($members as $member)
             <option value="{{ $member->id }}">{{ $member->nama }}</option>
@@ -52,8 +58,8 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
       </div>
       <div class="form-group">
         <label>Buku</label>
-        <select name="book_id" class="form-control">
-          <option>Pilih Buku</option>
+        <select name="book_id" class="form-control opsi">
+          <option value="">Pilih Buku</option>
           @forelse ($books as $book)
             <option value="{{ $book->id }}">{{ $book->title }}</option>
           @empty
@@ -66,3 +72,16 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
   </div>
 </div>
 @endsection
+
+{{-- Push JS Select2 ke stack 'scripts' --}}
+@push('scripts')
+<script src="{{ asset('templating/plugins/select2/js/select2.full.min.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    $('.opsi').select2({
+      placeholder: "Pilih Opsi",
+      theme: 'bootstrap4'
+    });
+  });
+</script>
+@endpush
