@@ -14,6 +14,14 @@
   {{-- SweetAlert2 --}}
   <link rel="stylesheet" href="{{ asset('templating/plugins/sweetalert2-theme-bootstrap-4/sweetalert2.min.css') }}">
 
+  <style>
+    @media print {
+    .no-print {
+      display: none;
+      }
+    }
+  </style>
+
   @stack('styles')
 
 </head>
@@ -44,7 +52,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">@yield('title')</h3>
+          <h3 class="card-title no-print">@yield('title')</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -68,11 +76,11 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+  <footer class="main-footer no-print">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.2.0
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Footer &copy;</strong>
   </footer>
 
   <!-- Control Sidebar -->
