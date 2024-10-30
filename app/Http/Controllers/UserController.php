@@ -12,4 +12,11 @@ class UserController extends Controller
     $users = User::all();
     return view('users.tampil', compact('users'));
   }
+
+  public function destroy($id)
+  {
+    $user = User::find($id);
+    $user->delete();
+    return back()->with('success', 'Data Berhasil Dihapus');
+  }
 }

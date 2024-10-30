@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Borrow;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -62,7 +63,7 @@ class BooksController extends Controller
 
     $books->save();
 
-    return redirect('/books');
+    return redirect('/books')->with('success', 'Data Berhasil Ditambahkan');
   }
 
   /**
@@ -117,7 +118,7 @@ class BooksController extends Controller
 
     $books->save();
 
-    return redirect('/books');
+    return redirect('/books')->with('success', 'Data Berhasil Diubah');
   }
 
   /**
@@ -126,12 +127,18 @@ class BooksController extends Controller
   public function destroy(string $id)
   {
     $books = Book::find($id);
+
+    $borrows = Borrow::where('book_id', $books->id)->where('status', 'Pinjam')->exists();
+    if ($borrows) {
+      return back()->with('error', 'Data Tidak Bisa Dihapus Karena Masih Ada Peminjaman');
+    }
+
     // Hapus file lama
     if ($books->image) {
       File::delete('uploads/' . $books->image);
     }
 
     $books->delete();
-    return redirect('/books');
+    return redirect('/books')->with('success', 'Data Berhasil Dihapus');
   }
 }

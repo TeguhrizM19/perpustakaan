@@ -43,7 +43,7 @@ class BorrowController extends Controller
 
     $books = Book::find($request->book_id);
     if ($books->stock < 1) {
-      return back()->with('pesan', 'Stock sedang habis');
+      return back()->with('error', 'Stock sedang habis');
     }
 
     $kurangiStock = $books->stock - 1;
@@ -58,7 +58,7 @@ class BorrowController extends Controller
     $borrows->book_id = $request->input('book_id');
 
     $borrows->save();
-    return redirect('/borrows');
+    return redirect('/borrows')->with('success', 'Data Berhasil Disimpan');
   }
 
   public function selesai($id)
@@ -74,13 +74,13 @@ class BorrowController extends Controller
     $books->save();
 
     $peminjaman->save();
-    return redirect('/borrows');
+    return back()->with('success', 'Peminjaman Telah Selesai');
   }
 
   /**
    * Display the specified resource.
    */
-  public function show(Borrow $borrow)
+  public function show($id)
   {
     //
   }
@@ -88,17 +88,37 @@ class BorrowController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Borrow $borrow)
+  public function edit($id)
   {
-    //
+    return view('borrows.edit', [
+      'borrow' => Borrow::find($id),
+      'books' => Book::all(),
+      'members' => Member::all()
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Borrow $borrow)
+  public function update(Request $request, $id)
   {
-    //
+    $request->validate([
+      'tgl_peminjaman' => 'required',
+      'tgl_kembali' => 'required',
+      'member_id' => 'exists:members,id',
+      'book_id' => 'exists:books,id'
+    ]);
+
+    $borrows = Borrow::find($id);
+
+
+    $borrows->tgl_peminjaman = $request->input('tgl_peminjaman');
+    $borrows->tgl_kembali = $request->input('tgl_kembali');
+    $borrows->member_id = $request->input('member_id');
+    $borrows->book_id = $request->input('book_id');
+
+    $borrows->save();
+    return redirect('/borrows')->with('success', 'Data Berhasil Diupdate');
   }
 
   /**
@@ -109,10 +129,10 @@ class BorrowController extends Controller
     $peminjaman = Borrow::find($id);
 
     if ($peminjaman->status == 'Pinjam') {
-      return back()->with('status', 'Data tidak bisa dihapus karena masih ada peminjaman');
+      return back()->with('error', 'Data tidak bisa dihapus karena masih ada peminjaman');
     }
 
     $peminjaman->delete();
-    return redirect('/borrows');
+    return redirect('/borrows')->with('success', 'Data Berhasil Dihapus');
   }
 }

@@ -52,7 +52,7 @@ class MemberController extends Controller
     $member->image = $newNameImage;
 
     $member->save();
-    return redirect('/members');
+    return redirect('/members')->with('success', 'Data Berhasil Disimpan');
   }
 
   /**
@@ -106,7 +106,7 @@ class MemberController extends Controller
     $member->email = $request->input('email');
 
     $member->save();
-    return redirect('/members');
+    return redirect('/members')->with('success', 'Data Berhasil Diubah');
   }
 
   /**
@@ -121,6 +121,13 @@ class MemberController extends Controller
     }
 
     $member->delete();
-    return back();
+    return back()->with('success', 'Data Berhasil Dihapus');
+  }
+
+  public function cetak($id)
+  {
+    return view('members.cetak', [
+      'member' => Member::find($id)
+    ]);
   }
 }

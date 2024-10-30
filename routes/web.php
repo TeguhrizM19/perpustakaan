@@ -40,6 +40,8 @@ Route::put('/borrows/{id}/selesai', [BorrowController::class, 'selesai']);
 
 // CRUD Member
 Route::resource('/members', MemberController::class);
+Route::get('/members/{id}/cetak', [MemberController::class, 'cetak']);
 
 // Halaman User
 Route::get('/users', [UserController::class, 'index']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);

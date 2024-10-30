@@ -41,7 +41,7 @@ class CategoryController extends Controller
     $categories->name = $request->input('name');
 
     $categories->save();
-    return redirect('/category');
+    return redirect('/category')->with('success', 'Data Berhasil Disimpan');
   }
 
   /**
@@ -76,7 +76,7 @@ class CategoryController extends Controller
     $categories->name = $request->input('name');
 
     $categories->save();
-    return redirect('/category');
+    return redirect('/category')->with('success', 'Data Berhasil Diubah');
   }
 
   /**
@@ -87,6 +87,6 @@ class CategoryController extends Controller
     $categories = Category::find($id);
 
     $categories->delete();
-    return redirect('/category');
+    return redirect('/category')->with('success', 'Data Berhasil Hapus');
   }
 }

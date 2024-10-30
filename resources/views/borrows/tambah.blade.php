@@ -1,13 +1,7 @@
 @extends('layouts.master')
 @section('title')
-  Tambah kategori
+  Tambah Peminjaman
 @endsection
-
-{{-- Push CSS Select2 ke stack 'styles' --}}
-@push('styles')
-  <link href="{{ asset('templating/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('templating/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}" rel="stylesheet" />
-@endpush
 
 @section('content')
 <?php 
@@ -17,13 +11,6 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
 <div class="row">
   <div class="col-md-8">
     <form action="/borrows" method="POST">
-      {{-- Validasi jika stock buku habis --}}
-    @if(session()->has('pesan'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      {{ session('pesan') }}
-    </div>
-    @endif
-
       {{-- Validation jika tdk diinputkan --}}
       @if ($errors->any())
         <div class="alert alert-danger">
@@ -47,7 +34,7 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
       </div>
       <div class="form-group">
         <label>Peminjam</label>
-        <select name="member_id" class="form-control opsi">
+        <select name="member_id" class="form-control select2">
           <option value="">Pilih Peminjam</option>
           @forelse ($members as $member)
             <option value="{{ $member->id }}">{{ $member->nama }}</option>
@@ -58,7 +45,7 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
       </div>
       <div class="form-group">
         <label>Buku</label>
-        <select name="book_id" class="form-control opsi">
+        <select name="book_id" class="form-control select2">
           <option value="">Pilih Buku</option>
           @forelse ($books as $book)
             <option value="{{ $book->id }}">{{ $book->title }}</option>
@@ -73,15 +60,42 @@ $kembali =date('d-M-Y', strtotime('+14 days', strtotime($pinjam)));
 </div>
 @endsection
 
-{{-- Push JS Select2 ke stack 'scripts' --}}
+{{-- Link Library Select2 (dropdown) --}}
+@push('styles')
+  <link href="{{ asset('templating/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('templating/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}" rel="stylesheet" />
+@endpush
+
 @push('scripts')
+<style>
+  /* Agar dropdown tidak terlalu panjang */
+  .select2-dropdown {
+    max-height: 150px; /* Sesuaikan sesuai kebutuhan */
+    overflow-y: auto;
+  }
+</style>
 <script src="{{ asset('templating/plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
   $(document).ready(function() {
-    $('.opsi').select2({
+    $('.select2').select2({
       placeholder: "Pilih Opsi",
-      theme: 'bootstrap4'
+      theme: 'bootstrap4',
+      dropdownCssClass: 'select2-dropdown'
     });
   });
 </script>
 @endpush
+
+{{-- Library JS Alert Sweetalert (Error) --}}
+@if(session('error'))
+  @push('scripts')
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal',
+      text: "{{ session('error') }}",
+      confirmButtonText: 'OK'
+    });
+  </script>
+  @endpush
+@endif

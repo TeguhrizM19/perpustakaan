@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light shadow p-3 mb-3 bg-white rounded">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
@@ -12,7 +12,8 @@
     <div class="nav-item">
       <a class="nav-link btn btn-danger text-white" href="{{ route('logout') }}"
         onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket"></i>
+        document.getElementById('logout-form').submit();">
+        <i class="fa-solid fa-right-from-bracket"></i>
           {{ __('Logout') }}
       </a>
 
@@ -33,6 +34,4 @@
     </div>
   </div>
   @endguest
-    
-
 </nav>
