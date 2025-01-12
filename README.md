@@ -1,6 +1,30 @@
-1. Tampilah Halaman Login
+1. Tampilan Halaman Login
 
 ![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/1-login.png)
+
+2. Tampilan Halaman Dashboard
+
+![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/2-dashboard.png)
+
+3. Tampilan Halaman Category
+
+![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/3-category.png)
+
+4. Tampilan Halaman Buku
+
+![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/4-buku.png)
+
+5. Tampilan Halaman Anggota
+
+![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/5-anggota.png)
+
+6. Tampilan Halaman Cetak Kartu
+
+![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/6-kartu.png)
+
+7. Tampilan Halaman Peminjaman
+
+![alt text](https://github.com/TeguhrizM19/perpustakaan/blob/main/image/7-peminjaman.png)
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
