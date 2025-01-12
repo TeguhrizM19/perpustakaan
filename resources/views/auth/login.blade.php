@@ -17,12 +17,13 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Web</b>Perpustakaan</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <h3 class="login-box-msg">Login</h3>
+      <p class="mr-3 font-italic text-center">Demo Aplikasi, Silakan Langsung Login</p>
 
       <form action="/login" method="post">
         {{-- Validation jika tdk diinputkan --}}
@@ -37,7 +38,7 @@
       @endif
         @csrf
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+          <input type="email" class="form-control" name="email" value="admin123@gmail.com">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -45,7 +46,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" name="password" value="admin123">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -61,8 +62,8 @@
         </div>
       </form>
 
-      <p class="mt-3">
-        <a href="/register" class="text-center">Register a new membership</a>
+      <p class="mt-3 text-center">
+        <a href="/register">Belum Punya Akun? Silahkan Daftar</a>
       </p>
     </div>
     <!-- /.login-card-body -->

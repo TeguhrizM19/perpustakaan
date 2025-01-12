@@ -46,8 +46,8 @@ class BorrowController extends Controller
       return back()->with('error', 'Stock sedang habis');
     }
 
-    $kurangiStock = $books->stock - 1;
-    $books->stock = $kurangiStock;
+    // jika ada buku yg dipinjam stock buku akan berkurang 1
+    $books->stock = $books->stock - 1;
     $books->save();
 
     $borrows = new Borrow;
@@ -69,8 +69,7 @@ class BorrowController extends Controller
     $peminjaman->status = 'Kembali';
 
     // jika tombol selesai ditekan stock buku akan kembali
-    $jumlahkanStock = $books->stock + 1;
-    $books->stock = $jumlahkanStock;
+    $books->stock = $books->stock + 1;
     $books->save();
 
     $peminjaman->save();
@@ -111,6 +110,22 @@ class BorrowController extends Controller
 
     $borrows = Borrow::find($id);
 
+    $oldBook = Book::find($borrows->book_id);
+    $newBook = Book::find($request->book_id);
+
+    if ($oldBook->id != $newBook->id) {
+      // Kembalikan stok buku lama
+      $oldBook->stock += 1;
+      $oldBook->save();
+
+      // Kurangi stok buku baru (jika stock masih ada kurangi)
+      if ($newBook->stock > 0) {
+        $newBook->stock -= 1;
+        $newBook->save();
+      } else {
+        return back()->with('error', 'Stock buku sedang habis');
+      }
+    }
 
     $borrows->tgl_peminjaman = $request->input('tgl_peminjaman');
     $borrows->tgl_kembali = $request->input('tgl_kembali');

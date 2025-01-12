@@ -17,12 +17,12 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Web</b>Perpustakaan</a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <h3 class="login-box-msg">Registration</h3>
 
       <form action="/register" method="post">
         {{-- Validation jika tdk diinputkan --}}
@@ -77,7 +77,9 @@
         </div>
       </form>
 
-      <a href="/login" class="text-center">I already have a membership</a>
+      <p class="text-center">
+        <a href="/login" class="text-center">Sudah Punya Akun? Silahkan Login</a>
+      </p>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

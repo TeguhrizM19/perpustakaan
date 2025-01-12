@@ -39,29 +39,25 @@ class BooksController extends Controller
    */
   public function store(Request $request)
   {
-    $request->validate([
+    $validated = $request->validate([
       'title' => 'required',
       'summary' => 'required',
       'releas_year' => 'required',
-      'category_id' => 'exists:categories,id',
+      'category_id' => 'required|exists:categories,id',
       'stock' => 'required',
-      'image' => 'required|mimes:jpg,jpeg,png|max:2048'
+      'image' => 'nullable|mimes:jpg,jpeg,png|max:2048'
     ]);
-    // mengubah naman file jadi unique
-    $newNameImage = time() . '.' . $request->image->extension();
-    // tempat penyimpanan image
-    $request->image->move(public_path('uploads'), $newNameImage);
 
-    $books = new Book;
+    if ($request->file('image')) {
+      // mengubah naman file jadi unique
+      $newNameImage = time() . '.' . $request->image->extension();
+      // tempat penyimpanan image
+      $request->image->move(public_path('uploads'), $newNameImage);
 
-    $books->title = $request->input('title');
-    $books->summary = $request->input('summary');
-    $books->releas_year = $request->input('releas_year');
-    $books->category_id = $request->input('category_id');
-    $books->stock = $request->input('stock');
-    $books->image = $newNameImage;
+      $validated['image'] = $newNameImage;
+    }
 
-    $books->save();
+    Book::create($validated);
 
     return redirect('/books')->with('success', 'Data Berhasil Ditambahkan');
   }
@@ -90,17 +86,18 @@ class BooksController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    $request->validate([
+    $validated = $request->validate([
       'title' => 'required',
       'summary' => 'required',
       'releas_year' => 'required',
-      'category_id' => 'exists:categories,id',
+      'category_id' => 'required|exists:categories,id',
+      'stock' => 'required',
       'image' => 'mimes:jpg,jpeg,png|max:2048'
     ]);
 
     $books = Book::find($id);
 
-    if ($request->has('image')) {
+    if ($request->file('image')) {
       // Hapus file lama
       File::delete('uploads/' . $books->image);
       // mengubah naman file jadi unique
@@ -108,15 +105,10 @@ class BooksController extends Controller
       // tempat penyimpanan image
       $request->image->move(public_path('uploads'), $newNameImage);
 
-      $books->image = $newNameImage;
+      $validated['image'] = $newNameImage;
     }
 
-    $books->title = $request->input('title');
-    $books->summary = $request->input('summary');
-    $books->releas_year = $request->input('releas_year');
-    $books->category_id = $request->input('category_id');
-
-    $books->save();
+    $books->update($validated);
 
     return redirect('/books')->with('success', 'Data Berhasil Diubah');
   }

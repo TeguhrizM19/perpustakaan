@@ -26,6 +26,7 @@
 
   @guest
   <div class="navbar-nav ml-auto">
+    <p class="mr-3 font-italic">Demo Aplikasi Silakan <strong class="text-danger">Login</strong> Untuk Mengakses Semua Fitur</p>
     <div class="nav-item">
       <a href="/login" class="nav-link btn btn-primary text-white">
         <i class="fa-solid fa-right-to-bracket"></i>
