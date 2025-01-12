@@ -23,7 +23,6 @@
   <div class="card">
     <div class="card-body login-card-body">
       <h3 class="login-box-msg">Login</h3>
-      <p class="mr-3 font-italic text-center">Demo Aplikasi, Silakan Langsung Login</p>
 
       <form action="/login" method="post">
         {{-- Validation jika tdk diinputkan --}}
